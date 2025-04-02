@@ -110,7 +110,6 @@ def compute_user_statistics(df):
 def compute_partition_statistics(df):
     """Calcula estadísticas de uso para cada partición."""
     partition_stats = {}
-    print(df)
     for partition in df['partition'].unique():
         partition_df = df[df['partition'] == partition]
         
@@ -165,7 +164,10 @@ def summary_partition(partition_stats):
             'avg_cpus': stats['avg_cpus'],
             'avg_memory': stats['avg_memory'],
             'gpu_ratio': stats['gpu_ratio'],
-            'total_jobs': stats['total_jobs']
+            'total_jobs': stats['total_jobs'],
+            'max_wait': stats['max_wait'],
+            'mean_wait': stats['mean_wait'],
+            'avg_wait': stats['avg_wait'],
         }
         data.append(row)
 
@@ -360,7 +362,7 @@ def analyze_hpc_data(file_path):
 
 if __name__ == "__main__":
     # Ruta del archivo a los datos de contabilidad SLURM
-    file_path = "sacct_raw_data.dat"
+    file_path = "../sacct_raw_data.dat"
     
     # Ejecutar el análisis
     results = analyze_hpc_data(file_path)

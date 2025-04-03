@@ -135,7 +135,6 @@ def compute_partition_statistics(df):
         total_wait = partition_df['wait'].sum()
         max_wait = partition_df['wait'].max()
         mean_wait = partition_df['wait'].mean()
-        avg_wait = total_wait / total_jobs if total_jobs > 0 else 0
         
         partition_stats[partition] = {
             'total_jobs': total_jobs,
@@ -150,7 +149,6 @@ def compute_partition_statistics(df):
             'gpu_ratio': gpu_ratio,
             'max_wait': max_wait,
             'mean_wait': mean_wait,
-            'avg_wait': avg_wait
         }
     
     return partition_stats
@@ -167,7 +165,6 @@ def summary_partition(partition_stats):
             'total_jobs': stats['total_jobs'],
             'max_wait': stats['max_wait'],
             'mean_wait': stats['mean_wait'],
-            'avg_wait': stats['avg_wait'],
         }
         data.append(row)
 
